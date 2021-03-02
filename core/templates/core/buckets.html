@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load size_converter %}
+
 
 {% block content %}
 <form action="{% url 'core:bucket_upload' %}" method="POST" enctype="multipart/form-data">
@@ -21,7 +23,7 @@
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{ obj.Key }}</td>
-        <td>{% widthratio obj.Size 1000 1 %} KB</td>
+        <td>{{ obj.Size|converter }}</td>
         <td><a href="{% url 'core:bucket_download' obj.Key %}">Download</a></td>
         <td><a href="{% url 'core:bucket_delete' obj.Key %}">Delete</a></td> 
       </tr>
