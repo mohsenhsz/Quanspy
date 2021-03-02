@@ -80,13 +80,9 @@ class UserDashboard(LoginRequiredMixin, View):
         form = self.form_class
         return render(request, self.template_name, {'user':user, 'form':form})
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your image uploaded successfully', 'info')
             return redirect('accounts:dashboard', request.user.username)
-
-
-
- 
