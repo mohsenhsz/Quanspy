@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-# from .tasks import all_bucket_objects_tasks
 from bucket import bucket
 from django.contrib import messages
 from accounts.forms import UserProfileForm
 from django.conf import settings
+from permissions import IsSuperUserMixin
 
 
 class Home(View):
@@ -16,7 +16,7 @@ class Home(View):
         pass
 
 
-class BucketHome(LoginRequiredMixin, View):
+class BucketHome(IsSuperUserMixin, View):
     template_name = 'core/buckets.html'
     contents = bucket.get_objects
     form_class = UserProfileForm
