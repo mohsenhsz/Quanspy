@@ -16,6 +16,7 @@ class QuestionsListView(APIView):
 
 class QuestionCreateView(APIView):
     permission_classes = [IsAuthenticated,]
+
     def post(self, request):
         srz_data = QuestionSerializer(data=request.data)
         if srz_data.is_valid():
@@ -26,6 +27,7 @@ class QuestionCreateView(APIView):
 
 class QuestionUpdateView(APIView):
     permission_classes = [IsOwnerOrReadOnly]
+
     def put(self, request, pk):
         question = Question.objects.get(pk=pk)
         self.check_object_permissions(request, question)
@@ -38,7 +40,42 @@ class QuestionUpdateView(APIView):
 
 class QuestiondeleteView(APIView):
     permission_classes = [IsOwnerOrReadOnly]
+
     def delete(self, request, pk):
         question = Question.objects.get(pk=pk).delete()
         self.check_object_permissions(request, question)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class AnswerCreateView(APIView):
+    permission_classes = [IsAuthenticated,]
+
+    def post(self, request):
+        srz_data = AnswerSerializer(data=request.data)
+        if srz_data.is_valid():
+            srz_data.save()
+            return Response(srz_data.data, status=status.HTTP_200_OK)
+        return Response(srz_data.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AnswerUpdateView(APIView):
+    permission_classes = [IsOwnerOrReadOnly,]
+
+    def put(self, request, pk):
+        answer = Answer.objects.get(pk=pk)
+        self.check_object_permissions(request, answer)
+        srz_data = AnswerSerializer(instance=answer, data=request.data, partial=True)
+        if srz_data.is_valid():
+            srz_data.save()
+            return Response(srz_data.data, status=status.HTTP_200_OK)
+        return Response(srz_data.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AnswerDeleteView(APIView):
+    permission_classes = [IsOwnerOrReadOnly,]
+
+    def delete(self, request, pk):
+        answer = Answer.objects.get(pk=pk)
+        self.check_object_permissions(request, answer)
+        answer.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -26,21 +26,21 @@ class BucketHome(IsSuperUserMixin, View):
         return render(request, self.template_name, {'objects':objects, 'form':self.form_class})
 
         
-class BucketDelete(LoginRequiredMixin, View):
+class BucketDelete(IsSuperUserMixin, View):
     def get(self, request, key):
         bucket.delete_object(key)
         messages.success(request, 'Deleted successfully.', 'info')
         return redirect('core:buckets_home') 
 
 
-class BucketDownload(LoginRequiredMixin, View):
+class BucketDownload(IsSuperUserMixin, View):
     def get(self, request, key):
         bucket.download_object(key)
         messages.success(request, 'Your file downloaded successfully', 'info')
         return redirect('core:buckets_home')
 
 
-class BucketUpload(LoginRequiredMixin, View):  
+class BucketUpload(IsSuperUserMixin, View):  
     def post(self, request):
 
         file_obj = request.FILES['filename']
