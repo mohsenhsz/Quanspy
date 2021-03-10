@@ -6,6 +6,10 @@
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Log in">
+        <br><br>
+        <a href="{% url 'social:begin' 'github' %}">Login with Github</a>
+
     </form>
+
 
 {% endblock %}

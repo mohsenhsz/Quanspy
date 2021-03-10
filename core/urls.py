@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from . import api_views
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 
 
 app_name = 'core'
@@ -13,8 +13,6 @@ api_urls = [
     path('answers/create/', api_views.AnswerCreateView.as_view()),
     path('answers/update/<int:pk>/', api_views.AnswerUpdateView.as_view()),
     path('answers/delete/<int:pk>/', api_views.AnswerDeleteView.as_view()),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     ]
 
 urlpatterns = [
@@ -24,5 +22,5 @@ urlpatterns = [
     path('bucket_download/<str:key>/', views.BucketDownload.as_view(), name='bucket_download'),
     path('bucket_upload/', views.BucketUpload.as_view(), name='bucket_upload'),
     path('api/', include(api_urls)),
-]
+    ]
 

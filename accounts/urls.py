@@ -23,13 +23,6 @@ urlpatterns = [
 
 
 
-# {
-#   "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxNTQwNDg1NCwianRpIjoiY2IzODlhMzU4ZjMzNGU1NjhjOWI3Y2I2MDcxN2Y2MzkiLCJ1c2VyX2lkIjoxfQ.hXdQlLZgnIoyPQEtgdTh-vwtB6i2NMCangLdU_SQmTY",
-#   "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjE1MzE4NzU0LCJqdGkiOiJjNTU1YTJkYTg1OGE0YmYzYjc0ZWIzYzM3N2ZkZTYyNyIsInVzZXJfaWQiOjF9.fo8FBOG-OLU8Vm0znyr2xmIc59AYSfXC32Dn1Y8lgHI"
-# }
-
-
-
 
 
 
