@@ -7,8 +7,10 @@
         {{ form.as_p }}
         <input type="submit" value="Log in">
         <br><br>
-        <a href="{% url 'social:begin' 'github' %}">Login with Github</a>
-
+        Login with 
+        <a href="{% url 'social:begin' 'github' %}">Github </a>or 
+        <a href="{% url 'social:begin' 'google-oauth2' %}">Google</a>
+    
     </form>
 
 
